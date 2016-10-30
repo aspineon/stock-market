@@ -1,5 +1,5 @@
 # stock-market
-Stock market application which aims to test and learn Angular 2 in frontend with REST API in backend
+Stock market application which aims to test and learn Angular 2 in frontend with REST API in backend.
 
 Technical stack:
 - Angular 2 (frontend) Not yet implemented
@@ -8,7 +8,7 @@ Technical stack:
 Run backend with:
 ```bash
 git clone https://github.com/sbouclier/stock-market.git
-cd stock-market/backend</code></pre>
+cd stock-market/backend
 mvn spring-boot:run
 ```
 

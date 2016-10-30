@@ -82,10 +82,22 @@ public class StockServiceImpl implements StockService {
 	 */
 	@Override
 	public Stock save(Stock stock) {
+		log.debug("save(save={})", stock);
+		
 		try {
 			return stockRepository.save(stock);
 		} catch (Exception ex) {
+			log.error(ex.getMessage());
 			throw new StockException("Unable to save stock : " + stock, ex);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Long countAll() {
+		log.debug("countAll()");
+		return stockRepository.count();
 	}
 }

@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -36,9 +37,11 @@ public class Stock {
 	private String isin;
 
 	@NotNull
+	@NotBlank
 	private String code;
 
 	@NotNull
+	@NotBlank
 	private String name;
 
 	@NotNull

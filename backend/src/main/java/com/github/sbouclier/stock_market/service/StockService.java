@@ -51,4 +51,11 @@ public interface StockService {
 	 * @return saved stock
 	 */
 	Stock save(Stock stock);
+
+	/**
+	 * Count all stocks
+	 * 
+	 * @return stocks numbers
+	 */
+	Long countAll();
 }
