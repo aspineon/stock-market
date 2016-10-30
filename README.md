@@ -14,6 +14,8 @@ Backend
 ```bash
 git clone https://github.com/sbouclier/stock-market.git
 ```
+Install MySQL and create a database named 'stockmarket'. Configuration of database can be changed on file backend/src/main/resources/application.properties.
+
 #Start-up
 Run backend with:
 ```bash
