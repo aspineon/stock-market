@@ -1,13 +1,22 @@
-# stock-market
+#stock-market
 Stock market application which aims to test and learn Angular 2 in frontend with REST API in backend.
 
-Technical stack:
-- Angular 2 (frontend) Not yet implemented
-- Spring Boot 1.4.1 (backend)
+#Technical stack
+Frontend (Not yet implemented)
+- Angular 2
 
-Run backend with:
+Backend
+- Spring Boot 1.4.1
+- Spring 4.3.3
+- Hibernate 5.0.11
+
+#Installation
 ```bash
 git clone https://github.com/sbouclier/stock-market.git
+```
+#Start-up
+Run backend with:
+```bash
 cd stock-market/backend
 mvn spring-boot:run
 ```
