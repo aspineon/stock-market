@@ -19,6 +19,7 @@
 	</properties>
 
 	<dependencies>
+
 		<!-- web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -27,6 +28,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<!-- rest -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 
 		<!-- test -->

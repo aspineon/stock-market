@@ -14,6 +14,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Stock entity
  * 
@@ -21,21 +23,26 @@ import org.hibernate.validator.constraints.Length;
  *
  */
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = "isin"), @UniqueConstraint(columnNames = "code") })
+@Table(uniqueConstraints = { @UniqueConstraint(name = "uk_stock_isin", columnNames = "isin"),
+		@UniqueConstraint(name = "uk_stock_code", columnNames = "code") })
 public class Stock {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@NotNull
 	@Length(min = 12, max = 12)
 	private String isin;
 
+	@NotNull
 	private String code;
 
+	@NotNull
 	private String name;
 
 	@NotNull
+	@JsonIgnore
 	private Date createdDate;
 
 	// ----------------

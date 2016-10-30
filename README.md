@@ -6,7 +6,32 @@ Technical stack:
 - Spring Boot 1.4.1 (backend)
 
 Run backend with:
+```bash
+git clone https://github.com/sbouclier/stock-market.git
+cd stock-market/backend</code></pre>
+mvn spring-boot:run
+```
 
-<pre><code>git clone https://github.com/sbouclier/stock-market.git</code></pre>
-<pre><code>cd stock-market/backend</code></pre>
-<pre><code>mvn spring-boot:run</code></pre>
+Go to http://localhost:8090/api/stocks, you should see:
+```json
+[
+  {
+    "id": 1,
+    "isin": "US0378331005",
+    "code": "AAPL",
+    "name": "Apple"
+  },
+  {
+    "id": 2,
+    "isin": "US02079K3059",
+    "code": "GOOGL",
+    "name": "Google"
+  },
+  {
+    "id": 3,
+    "isin": "US5949181045",
+    "code": "MSFT",
+    "name": "Microsoft"
+  }
+]
+```
