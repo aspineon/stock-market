@@ -1,7 +1,11 @@
 package com.github.sbouclier.stock_market.controller;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -15,6 +19,7 @@ import java.util.Arrays;
 
 import javax.transaction.Transactional;
 
+import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -117,5 +122,14 @@ public class StockRestControllerTest {
 	@Test
 	public void readStockWithInvalidCode() throws Exception {
 		mockMvc.perform(get("/api/stocks/UNKNOWN")).andExpect(status().isNotFound());
+	}
+
+	// ---------- read stocks ----------
+
+	@Test
+	public void readStocks() throws Exception {
+		mockMvc.perform(get("/api/stocks")).andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(3)))
+				.andExpect(jsonPath("$[0].code", is("AAPL"))).andExpect(jsonPath("$[1].code", is("GOOGL")))
+				.andExpect(jsonPath("$[2].code", is("MSFT")));
 	}
 }
