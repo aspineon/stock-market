@@ -58,6 +58,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- csv -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.4</version>
+		</dependency>
+
 		<!-- others -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
