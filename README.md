@@ -2,8 +2,8 @@
 Stock market application which aims to test and learn Angular 2 in frontend with REST API in backend.
 
 #Technical stack
-Frontend (Not yet implemented)
-- Angular 2
+Frontend
+- Angular 2.1.0
 
 Backend
 - Spring Boot 1.4.1
@@ -17,9 +17,11 @@ git clone https://github.com/sbouclier/stock-market.git
 Install MySQL and create a database named 'stockmarket'. Configuration of database can be changed on file backend/src/main/resources/application.properties.
 
 #Start-up
-Run backend with:
+Run backend with (you need maven installed):
 ```bash
-cd stock-market/backend
+cd stock-market
+mvn install
+cd backend
 mvn spring-boot:run
 ```
 
@@ -45,4 +47,11 @@ Go to http://localhost:8090/api/stocks, you should see:
     "name": "Microsoft"
   }
 ]
+```
+
+Run frontend with (you need node.js installed):
+```bash
+cd stock-market/frontend
+npm install
+ng serve
 ```
