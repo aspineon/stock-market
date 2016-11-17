@@ -1,5 +1,6 @@
 import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { Logger } from "angular2-logger/core";
 
 import { Observable } from 'rxjs/Rx';
 
@@ -9,12 +10,14 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class StockService {
 
-    constructor( private http: Http ) {
+    constructor( private log:Logger, private http: Http ) {
     }
 
     // TODO: Observable<Stock[]>
     public getAll(): Observable<Object> {
-        console.log( "getAll()" );
+        this.log.debug("StockService.getAll()");
+        
+        // TODO export config
         return this.http.get( "http://localhost:8090/api/stocks" )
             .map(( res: Response ) => res.json() )
             .do( function( data ) { console.log( "data received : " + data ) })
