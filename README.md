@@ -53,5 +53,5 @@ Run frontend with (you need node.js installed):
 ```bash
 cd stock-market/frontend
 npm install
-ng serve
+npm start
 ```
