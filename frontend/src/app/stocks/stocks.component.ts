@@ -1,10 +1,10 @@
+import { Stock } from './../models/stock';
+import { Logger } from 'angular2-logger/core';
 import { Component, OnInit } from '@angular/core';
 
 import { StockService } from '../stock.service';
 
-import { Observable } from 'rxjs/Rx';
-
-@Component( {
+@Component({
     selector: 'app-stocks',
     templateUrl: './stocks.component.html',
     styleUrls: ['./stocks.component.css'],
@@ -12,14 +12,16 @@ import { Observable } from 'rxjs/Rx';
 })
 export class StocksComponent implements OnInit {
 
-    private stocks: Object[];
+    private stocks: Stock[];
 
-    constructor( private stockService: StockService ) { }
+    constructor(private log: Logger, private stockService: StockService) { }
 
     ngOnInit() {
+        this.log.debug('StocksComponent.ngOnInit()');
+
         this.stockService.getAll()
-            .subscribe(( data: Object[] ) => { this.stocks = data },
-            error => console.log( "err " + error ),
-            () => console.log( 'Get all stocks complete' ) );
+            .subscribe((data: Stock[]) => { this.stocks = data; },
+            error => this.log.debug('err ' + error),
+            () => this.log.debug('Get all stocks complete'));
     }
 }

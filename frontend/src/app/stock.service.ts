@@ -1,8 +1,9 @@
+import { Observable } from 'rxjs/Rx';
 import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Logger } from "angular2-logger/core";
+import { Logger } from 'angular2-logger/core';
 
-import { Observable } from 'rxjs/Rx';
+import { Stock } from './models/stock';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,22 +11,30 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class StockService {
 
-    constructor( private log:Logger, private http: Http ) {
+    private stocksUrl = 'http://localhost:8090/api/stocks';
+
+    constructor(private log: Logger, private http: Http) {
     }
 
-    // TODO: Observable<Stock[]>
-    public getAll(): Observable<Object> {
-        this.log.debug("StockService.getAll()");
-        
-        // TODO export config
-        return this.http.get( "http://localhost:8090/api/stocks" )
-            .map(( res: Response ) => res.json() )
-            .do( function( data ) { console.log( "data received : " + data ) })
-            .catch( this.handleError );
+    public getAll(): Observable<Stock[]> {
+        this.log.debug('StockService.getAll()');
+
+        return this.http.get(this.stocksUrl)
+            .map((res: Response) => res.json())
+            .map((stocks: Array<any>) => {
+                let result: Array<Stock> = [];
+                if (stocks) {
+                    stocks.forEach((stock) => {
+                        result.push(new Stock(stock.id, stock.isin, stock.code, stock.name));
+                    });
+                }
+                return result;
+            })
+            .catch(this.handleError);
     }
 
-    private handleError( error: Response ) {
-        console.error( error );
-        return Observable.throw( error.json().error || 'Server error' );
+    private handleError(error: Response) {
+        console.error(error);
+        return Observable.throw(error.json().error || 'Server error');
     }
 }
