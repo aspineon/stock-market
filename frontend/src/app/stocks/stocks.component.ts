@@ -2,7 +2,7 @@ import { Stock } from './../models/stock';
 import { Logger } from 'angular2-logger/core';
 import { Component, OnInit } from '@angular/core';
 
-import { StockService } from '../stock.service';
+import { StockService } from '../services/stock.service';
 
 @Component({
     selector: 'app-stocks',

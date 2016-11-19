@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Logger } from 'angular2-logger/core';
 
-import { Stock } from './models/stock';
+import { Stock } from '../models/stock';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
