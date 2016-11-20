@@ -53,8 +53,8 @@ public class StockRestController {
 		final Stock newStock = stockService.save(new Stock(stock.getIsin(), stock.getCode(), stock.getName()));
 
 		HttpHeaders httpHeaders = new HttpHeaders();
-		httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(newStock.getId()).toUri());
+		httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{isin}")
+				.buildAndExpand(newStock.getIsin()).toUri());
 
 		return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
 	}
