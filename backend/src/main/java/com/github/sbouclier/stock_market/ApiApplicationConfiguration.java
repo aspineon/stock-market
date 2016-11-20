@@ -23,6 +23,7 @@ public class ApiApplicationConfiguration {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/api/**").allowedOrigins(CrossOrigin.DEFAULT_ORIGINS)
 						.allowedHeaders(CrossOrigin.DEFAULT_ALLOWED_HEADERS)
+						.exposedHeaders("Location")
 						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS").maxAge(3600L);
 			}
 		};
