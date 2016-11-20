@@ -3,6 +3,7 @@ export class Stock {
         public id: number,
         public isin: string,
         public code: string,
-        public name: string
+        public name: string,
+        public createdDate: Date
         ) {}
 }

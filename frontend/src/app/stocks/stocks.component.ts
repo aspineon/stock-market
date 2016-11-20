@@ -19,9 +19,9 @@ export class StocksComponent implements OnInit {
     ngOnInit() {
         this.log.debug('StocksComponent.ngOnInit()');
 
-        this.stockService.getAll()
+        this.stockService.getAllStocks()
             .subscribe((data: Stock[]) => { this.stocks = data; },
-            error => this.log.debug('err ' + error),
-            () => this.log.debug('Get all stocks complete'));
+            error => this.log.error('StocksComponent error', error),
+            () => this.log.debug('StocksComponent : get all stocks complete'));
     }
 }

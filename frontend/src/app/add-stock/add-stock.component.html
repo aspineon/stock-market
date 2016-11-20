@@ -1,0 +1,28 @@
+<p>
+  Add a new stock
+</p>
+<form [formGroup]="stockForm" (ngSubmit)="addStock()">
+  <label for="isin">
+    ISIN<input type="text" name="isin" id="isin" [formControl]="isin" value="12345678901" />
+  </label>
+  <div [hidden]="isin.valid || isin.untouched">
+    <div [hidden]="!isin.hasError('required')">ISIN is required</div>
+    <div [hidden]="!isin.hasError('minlength') && !isin.hasError('axlength')">ISIN must be 12 characters</div>
+  </div>
+
+  <label for="code">
+    Code<input type="text" name="code" id="code" [formControl]="code" />
+  </label>
+  <div [hidden]="code.valid || code.untouched">
+    <div [hidden]="!code.hasError('required')">Code is required</div>
+  </div>
+
+  <label for="name">
+    Name<input type="text" name="name" id="name" [formControl]="name" />
+  </label>
+  <div [hidden]="name.valid || name.untouched">
+    <div [hidden]="!name.hasError('required')">Name is required</div>
+  </div>
+
+  <button type="submit">Add</button>
+</form>
