@@ -41,18 +41,12 @@ export class StockService {
         const _this = this;
         return this.http.get(this.stocksUrl + '/' + isin)
             .map((res: Response) => res.json())
-            .map((stock: any) => {
-                let result: Stock = undefined;
-                if (stock) {
-                    result = new Stock(stock.id, stock.isin, stock.code, stock.name, stock.createdDate);
-                }
-                return result;
-            })
+            .map((stockJson: any) =>  Stock.toObject(stockJson))
             .do(function (data) { _this.log.debug('StockService.getStockByIsin data received : ', data); })
             .catch(this.handleError);
     }
 
-    public addStock(body: Object):Observable<Response> {
+    public addStock(body: Object): Observable<Stock> {
         this.log.debug('StockService.addStock()');
 
         let bodyString = JSON.stringify(body);
@@ -66,15 +60,14 @@ export class StockService {
                 _this.log.info('StockService.addStock Stock added location : ', location);
                 return _this.http.get(location);
             }).map((res: Response) => {
-                // TODO cast
-                _this.log.info('StockService.addStock retrieve stock by location : ', res);
-                return res.json();
+                _this.log.debug('StockService.addStock retrieve stock by location : ', res);
+                return Stock.toObject(res.json());
             })
             .catch(this.handleError);
     }
 
     private handleError(error: Response) {
-        console.error('StockService.handleError()', error);
+        this.log.error('StockService.handleError()', error);
         return Observable.throw(error.json() || 'StockService : Server error');
     }
 }
