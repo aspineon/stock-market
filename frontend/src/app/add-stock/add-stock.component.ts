@@ -1,7 +1,8 @@
+import { Stock } from './../models/stock';
 import { StockService } from './../services/stock.service';
 import { Logger } from 'angular2-logger/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-add-stock',
@@ -10,6 +11,8 @@ import { Component } from '@angular/core';
   providers: [StockService]
 })
 export class AddStockComponent {
+
+  @Output() onStockAdded = new EventEmitter<Stock>();
 
   stockForm: FormGroup;
   isin: FormControl;
@@ -38,7 +41,9 @@ export class AddStockComponent {
 
     this.stockService.addStock(this.stockForm.value).subscribe(
       res => {
+        // TODO
         this.log.debug('AddStockComponent Stock added', res);
+        //this.onStockAdded.emit(res);
       },
       err => {
         this.log.error('AddStockComponent Can\'t add stock', err);

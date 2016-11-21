@@ -35,7 +35,7 @@ export class StockService {
             .catch(this.handleError);
     }
 
-    public addStock(body: Object) {
+    public addStock(body: Object):Observable<Response> {
         this.log.debug('StockService.addStock()');
 
         let bodyString = JSON.stringify(body);
@@ -44,9 +44,14 @@ export class StockService {
 
         const _this = this;
         return this.http.post(this.stocksUrl, bodyString, options)
-            .do(function (data) {
-                _this.log.info('StockService.addStock Stock added location : ', data.headers.get('Location'));
-                _this.log.debug('StockService.addStock data received : ', data);
+            .flatMap((res: Response) => {
+                const location = res.headers.get('Location');
+                _this.log.info('StockService.addStock Stock added location : ', location);
+                return _this.http.get(location);
+            }).map((res: Response) => {
+                // TODO cast
+                _this.log.info('StockService.addStock retrieve stock by location : ', res);
+                return res.json();
             })
             .catch(this.handleError);
     }
