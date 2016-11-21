@@ -35,6 +35,23 @@ export class StockService {
             .catch(this.handleError);
     }
 
+    public getStockByIsin(isin: string): Observable<Stock> {
+        this.log.debug('StockService.getStockByIsin(isin=' + isin + ')');
+
+        const _this = this;
+        return this.http.get(this.stocksUrl + '/' + isin)
+            .map((res: Response) => res.json())
+            .map((stock: any) => {
+                let result: Stock = undefined;
+                if (stock) {
+                    result = new Stock(stock.id, stock.isin, stock.code, stock.name, stock.createdDate);
+                }
+                return result;
+            })
+            .do(function (data) { _this.log.debug('StockService.getStockByIsin data received : ', data); })
+            .catch(this.handleError);
+    }
+
     public addStock(body: Object):Observable<Response> {
         this.log.debug('StockService.addStock()');
 
