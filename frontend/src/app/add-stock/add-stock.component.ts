@@ -41,9 +41,8 @@ export class AddStockComponent {
 
     this.stockService.addStock(this.stockForm.value).subscribe(
       res => {
-        // TODO
         this.log.debug('AddStockComponent Stock added', res);
-        //this.onStockAdded.emit(res);
+        this.onStockAdded.emit(res);
       },
       err => {
         this.log.error('AddStockComponent Can\'t add stock', err);

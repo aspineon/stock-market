@@ -1,3 +1,4 @@
+import { Stock } from './models/stock';
 import { Component } from '@angular/core';
 
 @Component({

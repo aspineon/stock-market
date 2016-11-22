@@ -18,10 +18,20 @@ export class StocksComponent implements OnInit {
 
     ngOnInit() {
         this.log.debug('StocksComponent.ngOnInit()');
+        this.initStocks();
+    }
+
+    public initStocks() {
+        this.log.debug('StocksComponent.initStocks()');
 
         this.stockService.getAllStocks()
             .subscribe((data: Stock[]) => { this.stocks = data; },
             error => this.log.error('StocksComponent error', error),
             () => this.log.debug('StocksComponent : get all stocks complete'));
+    }
+
+    public addStock(stock: Stock) {
+        this.log.debug('StocksComponent.addStock()', stock);
+        this.stocks.push(stock);
     }
 }
