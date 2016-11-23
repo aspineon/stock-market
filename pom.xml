@@ -10,6 +10,12 @@
 	<name>stock-market</name>
 	<url>https://github.com/sbouclier/stock-market</url>
 
+	<scm>
+		<url>https://github.com/sbouclier/stock-market</url>
+		<connection>scm:git:ssh://git@github.com/sbouclier/stock-market.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/sbouclier/stock-market.git</developerConnection>
+	</scm>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
