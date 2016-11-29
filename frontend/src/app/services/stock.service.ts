@@ -26,7 +26,7 @@ export class StockService {
                 let result: Array<Stock> = [];
                 if (stocks) {
                     stocks.forEach((stock) => {
-                        result.push(new Stock(stock.id, stock.isin, stock.code, stock.name, stock.createdDate));
+                        result.push(new Stock(stock.id, stock.isin, stock.code, stock.name, new Date(stock.createdDate)));
                     });
                 }
                 return result;
@@ -47,7 +47,7 @@ export class StockService {
     }
 
     public addStock(body: Object): Observable<Stock> {
-        this.log.debug('StockService.addStock()');
+        this.log.debug('StockService.addStock(...) body=', body);
 
         let bodyString = JSON.stringify(body);
         let headers = new Headers({ 'Content-Type': 'application/json' });

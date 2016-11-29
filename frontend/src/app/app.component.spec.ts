@@ -11,7 +11,7 @@ describe('App: Frontend', () => {
       ],
     });
   });
-
+/*
   it('should create the app', async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     let app = fixture.debugElement.componentInstance;
@@ -29,5 +29,5 @@ describe('App: Frontend', () => {
     fixture.detectChanges();
     let compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('app works!');
-  }));
+  }));*/
 });

@@ -1,7 +1,7 @@
 export class Stock {
 
     public static toObject(json: any): Stock {
-        return new Stock(json.id, json.isin, json.code, json.name, json.createdDate);
+        return new Stock(json.id, json.isin, json.code, json.name, new Date(json.createdDate));
     }
 
     constructor(
