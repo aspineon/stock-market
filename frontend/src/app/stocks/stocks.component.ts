@@ -12,9 +12,11 @@ import { StockService } from '../services/stock.service';
 })
 export class StocksComponent implements OnInit {
 
-    private stocks: Stock[];
+    public stocks: Stock[] = new Array();
 
-    constructor(private log: Logger, private stockService: StockService) { }
+    constructor(private log: Logger, private stockService: StockService) {
+        this.log.debug('StocksComponent(log=' + log.constructor.name + ', stockService=' + stockService.constructor.name + ')');
+    }
 
     ngOnInit() {
         this.log.debug('StocksComponent.ngOnInit()');
@@ -23,7 +25,6 @@ export class StocksComponent implements OnInit {
 
     public initStocks() {
         this.log.debug('StocksComponent.initStocks()');
-
         this.stockService.getAllStocks()
             .subscribe((data: Stock[]) => { this.stocks = data; },
             error => this.log.error('StocksComponent error', error),
