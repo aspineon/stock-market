@@ -1,3 +1,9 @@
-<p>
-  stock-details works!
-</p>
+<div *ngIf="stock">
+  <div>{{stock.id}}</div>
+  <div>{{stock.code}}</div>
+  <div>{{stock.isin}}</div>
+  <div>{{stock.name}}</div>
+  <div>{{stock.createdDate}}</div>
+</div>
+
+<a [routerLink]="['/stock']">Back</a>

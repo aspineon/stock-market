@@ -14,7 +14,8 @@ import { StockPageComponent } from './stock-page/stock-page.component';
 
 const routes: Routes = [
     { path: '', component: HomePageComponent },
-    { path: 'stock', component: StockPageComponent }
+    { path: 'stock', component: StockPageComponent },
+    { path: 'stock/:isin', component: StockDetailsComponent }
 ];
 
 export const routing = RouterModule.forRoot(routes);
