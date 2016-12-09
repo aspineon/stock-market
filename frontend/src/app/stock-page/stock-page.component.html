@@ -1,0 +1,4 @@
+<app-stocks #appStocks></app-stocks>
+<app-add-stock (onStockAdded)="appStocks.addStock($event)"></app-add-stock>
+
+<a [routerLink]="['/']">Home</a>
