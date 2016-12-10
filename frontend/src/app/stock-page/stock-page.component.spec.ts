@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule } from '@angular/router';
 import { StockListComponent } from './../stock-list/stock-list.component';
-import { AddStockComponent } from './../add-stock/add-stock.component';
+import { StockAddComponent } from './../stock-add/stock-add.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StockPageComponent } from './stock-page.component';
 
@@ -18,7 +18,7 @@ describe('StockPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StockPageComponent, AddStockComponent, StockListComponent ],
+      declarations: [ StockPageComponent, StockAddComponent, StockListComponent ],
       providers: [
         { provide: Logger, useClass: MockLogger },
       ],

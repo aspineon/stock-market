@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { StockService } from '../services/stock.service';
 
 @Component({
-    selector: 'app-stocks',
+    selector: 'app-stock-list',
     templateUrl: './stock-list.component.html',
     styleUrls: ['./stock-list.component.css'],
     providers: [StockService]

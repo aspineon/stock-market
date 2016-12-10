@@ -7,7 +7,7 @@ import { StockService } from './../services/stock.service';
 import { Logger } from 'angular2-logger/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddStockComponent } from './add-stock.component';
+import { StockAddComponent } from './stock-add.component';
 
 class MockLogger {
   debug(str) { }
@@ -20,25 +20,25 @@ class MockStockService {
   }
 }
 
-describe('AddStockComponent', () => {
-  let component: AddStockComponent;
+describe('StockAddComponent', () => {
+  let component: StockAddComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AddStockComponent],
+      declarations: [StockAddComponent],
       providers: [
         { provide: Logger, useClass: MockLogger },
       ],
       imports: [HttpModule, FormsModule, ReactiveFormsModule, RouterModule, RouterTestingModule]
     });
 
-    TestBed.overrideComponent(AddStockComponent, {
+    TestBed.overrideComponent(StockAddComponent, {
       set: {
         providers: [{ provide: StockService, useClass: MockStockService }]
       }
     });
 
-    const fixture: ComponentFixture<AddStockComponent> = TestBed.createComponent(AddStockComponent);
+    const fixture: ComponentFixture<StockAddComponent> = TestBed.createComponent(StockAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -7,7 +7,7 @@ import { LOG_LOGGER_PROVIDERS } from 'angular2-logger/core';
 
 import { AppComponent } from './app.component';
 import { StockListComponent } from './stock-list/stock-list.component';
-import { AddStockComponent } from './add-stock/add-stock.component';
+import { StockAddComponent } from './stock-add/stock-add.component';
 import { StockDetailsComponent } from './stock-details/stock-details.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { StockPageComponent } from './stock-page/stock-page.component';
@@ -24,7 +24,7 @@ export const routing = RouterModule.forRoot(routes);
     declarations: [
         AppComponent,
         StockListComponent,
-        AddStockComponent,
+        StockAddComponent,
         StockDetailsComponent,
         HomePageComponent,
         StockPageComponent
