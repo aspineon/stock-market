@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { Logger } from 'angular2-logger/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StocksComponent } from './stocks.component';
+import { StockListComponent } from './stock-list.component';
 
 const fakeStocks = [
   new Stock(1, 'US0378331005', 'AAPL', 'Apple', new Date('2016-11-25T21:50:05.000+0100')),
@@ -25,25 +25,25 @@ class MockStockService {
   }
 }
 
-describe('StocksComponent', () => {
-  let component: StocksComponent;
+describe('StockListComponent', () => {
+  let component: StockListComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [StocksComponent],
+      declarations: [StockListComponent],
       providers: [
         { provide: Logger, useClass: MockLogger },
       ],
       imports: [HttpModule, RouterModule, RouterTestingModule]
     });
 
-    TestBed.overrideComponent(StocksComponent, {
+    TestBed.overrideComponent(StockListComponent, {
       set: {
         providers: [{ provide: StockService, useClass: MockStockService }]
       }
     });
 
-    const fixture: ComponentFixture<StocksComponent> = TestBed.createComponent(StocksComponent);
+    const fixture: ComponentFixture<StockListComponent> = TestBed.createComponent(StockListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

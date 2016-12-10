@@ -6,33 +6,33 @@ import { StockService } from '../services/stock.service';
 
 @Component({
     selector: 'app-stocks',
-    templateUrl: './stocks.component.html',
-    styleUrls: ['./stocks.component.css'],
+    templateUrl: './stock-list.component.html',
+    styleUrls: ['./stock-list.component.css'],
     providers: [StockService]
 })
-export class StocksComponent implements OnInit {
+export class StockListComponent implements OnInit {
 
     public stocks: Stock[] = new Array();
 
     constructor(private log: Logger, private stockService: StockService) {
-        this.log.debug('StocksComponent(log=' + log.constructor.name + ', stockService=' + stockService.constructor.name + ')');
+        this.log.debug('StockListComponent(log=' + log.constructor.name + ', stockService=' + stockService.constructor.name + ')');
     }
 
     ngOnInit() {
-        this.log.debug('StocksComponent.ngOnInit()');
+        this.log.debug('StockListComponent.ngOnInit()');
         this.initStocks();
     }
 
     public initStocks() {
-        this.log.debug('StocksComponent.initStocks()');
+        this.log.debug('StockListComponent.initStocks()');
         this.stockService.getAllStocks()
             .subscribe((data: Stock[]) => { this.stocks = data; },
-            error => this.log.error('StocksComponent error', error),
-            () => this.log.debug('StocksComponent : get all stocks complete'));
+            error => this.log.error('StockListComponent error', error),
+            () => this.log.debug('StockListComponent : get all stocks complete'));
     }
 
     public addStock(stock: Stock) {
-        this.log.debug('StocksComponent.addStock()', stock);
+        this.log.debug('StockListComponent.addStock()', stock);
         this.stocks.push(stock);
     }
 }

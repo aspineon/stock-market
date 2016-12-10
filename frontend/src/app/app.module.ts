@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { LOG_LOGGER_PROVIDERS } from 'angular2-logger/core';
 
 import { AppComponent } from './app.component';
-import { StocksComponent } from './stocks/stocks.component';
+import { StockListComponent } from './stock-list/stock-list.component';
 import { AddStockComponent } from './add-stock/add-stock.component';
 import { StockDetailsComponent } from './stock-details/stock-details.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -23,7 +23,7 @@ export const routing = RouterModule.forRoot(routes);
 @NgModule({
     declarations: [
         AppComponent,
-        StocksComponent,
+        StockListComponent,
         AddStockComponent,
         StockDetailsComponent,
         HomePageComponent,
