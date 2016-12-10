@@ -1,3 +1,5 @@
+import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { StockService } from './../services/stock.service';
 import { Stock } from './../models/stock';
@@ -32,7 +34,7 @@ describe('StocksComponent', () => {
       providers: [
         { provide: Logger, useClass: MockLogger },
       ],
-      imports: [HttpModule]
+      imports: [HttpModule, RouterModule, RouterTestingModule]
     });
 
     TestBed.overrideComponent(StocksComponent, {

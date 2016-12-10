@@ -1,31 +1,33 @@
+import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { Logger } from 'angular2-logger/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StockDetailsComponent } from './stock-details.component';
 
 class MockLogger {
-  debug(str) { }
+    debug(str) { }
 }
 
-describe('AddStockComponent', () => {
-  let component: StockDetailsComponent;
+describe('StockDetailsComponent', () => {
+    let component: StockDetailsComponent;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [StockDetailsComponent],
-      providers: [
-        { provide: Logger, useClass: MockLogger },
-      ],
-      imports: [HttpModule]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [StockDetailsComponent],
+            providers: [
+                { provide: Logger, useClass: MockLogger }
+            ],
+            imports: [HttpModule, RouterModule, RouterTestingModule]
+        });
+
+        const fixture: ComponentFixture<StockDetailsComponent> = TestBed.createComponent(StockDetailsComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
     });
 
-    const fixture: ComponentFixture<StockDetailsComponent> = TestBed.createComponent(StockDetailsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should have a defined component', () => {
-    expect(component).toBeDefined();
-  });
+    it('should have a defined component', () => {
+        expect(component).toBeDefined();
+    });
 
 });

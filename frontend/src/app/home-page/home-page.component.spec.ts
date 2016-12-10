@@ -1,8 +1,6 @@
-/* tslint:disable:no-unused-variable */
+import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
 import { HomePageComponent } from './home-page.component';
 
 describe('HomePageComponent', () => {
@@ -11,9 +9,10 @@ describe('HomePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomePageComponent ]
+      declarations: [HomePageComponent],
+      imports: [RouterModule, RouterTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

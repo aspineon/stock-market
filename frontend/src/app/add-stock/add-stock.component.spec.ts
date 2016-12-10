@@ -1,10 +1,11 @@
+import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { Stock } from './../models/stock';
 import { HttpModule } from '@angular/http';
 import { StockService } from './../services/stock.service';
 import { Logger } from 'angular2-logger/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddStockComponent } from './add-stock.component';
 
@@ -28,7 +29,7 @@ describe('AddStockComponent', () => {
       providers: [
         { provide: Logger, useClass: MockLogger },
       ],
-      imports: [HttpModule, FormsModule, ReactiveFormsModule]
+      imports: [HttpModule, FormsModule, ReactiveFormsModule, RouterModule, RouterTestingModule]
     });
 
     TestBed.overrideComponent(AddStockComponent, {

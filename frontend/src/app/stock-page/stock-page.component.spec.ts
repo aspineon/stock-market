@@ -1,9 +1,16 @@
-/* tslint:disable:no-unused-variable */
+import { HttpModule } from '@angular/http';
+import { Logger } from 'angular2-logger/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
+import { StocksComponent } from './../stocks/stocks.component';
+import { AddStockComponent } from './../add-stock/add-stock.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
 import { StockPageComponent } from './stock-page.component';
+
+class MockLogger {
+  debug(str) { }
+}
 
 describe('StockPageComponent', () => {
   let component: StockPageComponent;
@@ -11,7 +18,11 @@ describe('StockPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StockPageComponent ]
+      declarations: [ StockPageComponent, AddStockComponent, StocksComponent ],
+      providers: [
+        { provide: Logger, useClass: MockLogger },
+      ],
+      imports: [ HttpModule, RouterModule, RouterTestingModule, FormsModule, ReactiveFormsModule]
     })
     .compileComponents();
   }));
