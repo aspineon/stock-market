@@ -1,3 +1,4 @@
+import { MockLogger } from './../mock-logger';
 import { HttpModule } from '@angular/http';
 import { Logger } from 'angular2-logger/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7,10 +8,6 @@ import { StockListComponent } from './../stock-list/stock-list.component';
 import { StockAddComponent } from './../stock-add/stock-add.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StockPageComponent } from './stock-page.component';
-
-class MockLogger {
-  debug(str) { }
-}
 
 describe('StockPageComponent', () => {
   let component: StockPageComponent;

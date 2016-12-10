@@ -1,3 +1,4 @@
+import { MockLogger } from './../mock-logger';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
@@ -8,10 +9,6 @@ import { Logger } from 'angular2-logger/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StockAddComponent } from './stock-add.component';
-
-class MockLogger {
-  debug(str) { }
-}
 
 class MockStockService {
   public addStock(body: Object): Observable<Stock> {

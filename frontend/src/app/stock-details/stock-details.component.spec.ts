@@ -1,13 +1,10 @@
+import { MockLogger } from './../mock-logger';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { Logger } from 'angular2-logger/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StockDetailsComponent } from './stock-details.component';
-
-class MockLogger {
-    debug(str) { }
-}
 
 describe('StockDetailsComponent', () => {
     let component: StockDetailsComponent;
