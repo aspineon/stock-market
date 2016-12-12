@@ -1,5 +1,6 @@
 package com.github.sbouclier.stock_market.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,4 +59,15 @@ public interface StockService {
 	 * @return stocks numbers
 	 */
 	Long countAll();
+
+	/**
+	 * Load and save historical data from a stock isin
+	 * 
+	 * @param isin
+	 * @param startDate
+	 * @param endDate
+	 * 
+	 * @return stocks added count
+	 */
+	int loadHistoricalData(String isin, Date startDate, Date endDate);
 }

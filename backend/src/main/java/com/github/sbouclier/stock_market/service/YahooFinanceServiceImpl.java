@@ -90,7 +90,7 @@ public class YahooFinanceServiceImpl implements YahooFinanceService {
 	 * @return
 	 */
 	private List<CSVData> parseCSVRecord(List<CSVRecord> csvRecords) {
-		log.debug("parseCSVRecord(csvRecords={})", csvRecords);
+		log.debug("parseCSVRecord(csvRecords.size={})", csvRecords.size());
 
 		final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 		final List<CSVData> data = new ArrayList<>();

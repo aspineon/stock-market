@@ -1,8 +1,6 @@
 package com.github.sbouclier.stock_market.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.sbouclier.stock_market.domain.StockHistoricalData;
+import com.github.sbouclier.stock_market.exception.StockException;
+import com.github.sbouclier.stock_market.service.StockService;
 import com.github.sbouclier.stock_market.service.YahooFinanceService;
 
 /**
@@ -29,38 +28,37 @@ public class StockHistoricalDataRestController {
 
 	private static final Logger log = LoggerFactory.getLogger(StockHistoricalDataRestController.class);
 
+	// TODO remove
 	private final YahooFinanceService yahooFinanceService;
+
+	private final StockService stockService;
 
 	// ----------------
 	// - CONSTRUCTORS -
 	// ----------------
 
 	@Autowired
-	public StockHistoricalDataRestController(YahooFinanceService yahooFinanceService) {
+	public StockHistoricalDataRestController(StockService stockService, YahooFinanceService yahooFinanceService) {
+		this.stockService = stockService;
 		this.yahooFinanceService = yahooFinanceService;
 	}
 
 	// ------------
 	// - REQUESTS -
-	// ------------
+	// ------------·
 
-	@RequestMapping(value = "/{code}", method = RequestMethod.GET)
-	public List<StockHistoricalData> getHistoricalData(@PathVariable String code,
-			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+	@RequestMapping(value = "/load", method = RequestMethod.GET)
+	public int load(@RequestParam String isin, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
 			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
-		log.debug("getHistoricalData(code={}, startDate={}, endDate={})");
+		log.debug("load(isin={}, startDate={}, endDate={})", isin, startDate, endDate);
 
-		List<StockHistoricalData> stockHistoricalData = new ArrayList<>();
-
-		final List<YahooFinanceService.CSVData> data = yahooFinanceService.getStockData(code, startDate, endDate);
-
-		StockHistoricalData shd = null;
-		for (YahooFinanceService.CSVData csvData : data) {
-			shd = new StockHistoricalData(csvData.getDate(), csvData.getOpen(), csvData.getClose(), csvData.getLow(),
-					csvData.getHigh(), csvData.getAdjClose(), csvData.getVolume());
-			stockHistoricalData.add(shd);
+		int count = 0;
+		try {
+			count = stockService.loadHistoricalData(isin, startDate, endDate);
+		} catch (Exception ex) {
+			throw new StockException("Unable to load historical data", ex);
 		}
 
-		return stockHistoricalData;
+		return count;
 	}
 }
