@@ -28,6 +28,7 @@ public class StockHistoricalData {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@NotNull
 	@ManyToOne
 	private Stock stock;
 
