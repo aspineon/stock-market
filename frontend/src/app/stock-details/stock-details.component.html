@@ -4,6 +4,7 @@
   <div>{{stock.isin}}</div>
   <div>{{stock.name}}</div>
   <div>{{stock.createdDate}}</div>
+  <app-stock-historical-data-load [isin]="stock.isin"></app-stock-historical-data-load>
 </div>
 
 <a [routerLink]="['/stock']">Back</a>

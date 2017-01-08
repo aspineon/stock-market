@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Rx';
-import { Headers, Http, Response, RequestOptions } from '@angular/http';
+import { Headers, Http, Response, RequestOptions, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Logger } from 'angular2-logger/core';
 
@@ -11,7 +11,9 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class StockService {
 
+    // TODO export urls
     private stocksUrl = 'http://localhost:8090/api/stocks';
+    private loadHistoricalDataUrl = 'http://localhost:8090/api/stocks/historical/load';
 
     constructor(private log: Logger, private http: Http) {
     }
@@ -41,7 +43,7 @@ export class StockService {
         const _this = this;
         return this.http.get(this.stocksUrl + '/' + isin)
             .map((res: Response) => res.json())
-            .map((stockJson: any) =>  Stock.toObject(stockJson))
+            .map((stockJson: any) => Stock.toObject(stockJson))
             .do(function (data) { _this.log.debug('StockService.getStockByIsin data received : ', data); })
             .catch(this.handleError);
     }
@@ -62,6 +64,31 @@ export class StockService {
             }).map((res: Response) => {
                 _this.log.debug('StockService.addStock retrieve stock by location : ', res);
                 return Stock.toObject(res.json());
+            })
+            .catch(this.handleError);
+    }
+
+    public loadHistoricalData(isin: string, startDate: any, endDate: any): Observable<any> {
+        this.log.debug('StockService.loadHistoricalData(...) body=', isin, startDate, endDate);
+
+        let params = new URLSearchParams();
+        params.set('isin', isin);
+        params.set('startDate', startDate);
+        params.set('endDate', endDate);
+
+        //let bodyString = JSON.stringify(body);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({
+            headers: headers,
+            search: params
+        });
+
+        const _this = this;
+        //return this.http.post(this.loadHistoricalDataUrl, bodyString, options)
+        return this.http.get(this.loadHistoricalDataUrl, options)
+            .map((res: Response) => {
+                _this.log.debug('StockService.loadHistoricalData count historical data loaded : ', res);
+                return res.json();
             })
             .catch(this.handleError);
     }

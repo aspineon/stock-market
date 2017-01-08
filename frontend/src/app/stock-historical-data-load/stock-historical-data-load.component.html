@@ -1,0 +1,21 @@
+<p>
+  Load historical data
+</p>
+<form [formGroup]="loadForm" (ngSubmit)="load()">
+
+  <label for="startDate">
+    Start date<input type="text" name="startDate" id="startDate" [formControl]="startDate" />
+  </label>
+  <div [hidden]="startDate.valid || startDate.untouched">
+    <div [hidden]="!startDate.hasError('required')">Start date is required</div>
+  </div>
+
+  <label for="endDate">
+    End date<input type="text" name="endDate" id="endDate" [formControl]="endDate" />
+  </label>
+  <div [hidden]="endDate.valid || endDate.untouched">
+    <div [hidden]="!endDate.hasError('required')">End date is required</div>
+  </div>
+
+  <button type="submit">Load</button>
+</form>

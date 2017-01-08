@@ -11,6 +11,7 @@ import { StockAddComponent } from './stock-add/stock-add.component';
 import { StockDetailsComponent } from './stock-details/stock-details.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { StockPageComponent } from './stock-page/stock-page.component';
+import { StockHistoricalDataLoadComponent } from './stock-historical-data-load/stock-historical-data-load.component';
 
 const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -27,7 +28,8 @@ export const routing = RouterModule.forRoot(routes);
         StockAddComponent,
         StockDetailsComponent,
         HomePageComponent,
-        StockPageComponent
+        StockPageComponent,
+        StockHistoricalDataLoadComponent
     ],
     imports: [
         BrowserModule,
